@@ -28,26 +28,24 @@ class PQueue
 	vector<T> vec;
 };
 
-template <typename T> PQueue<T>::PQueue()
-{ 
-}
+template <typename T> PQueue<T>::PQueue(){}
 
 template <typename T> PQueue<T>::PQueue(vector<T> &v)
 {
-for (int i = v.size()-1; i > 0; i--)
-    for (int j = 0; j < i; j++)
-        if (v[j] > v[j+1])
-            swap(v[j], v[j+1]);
+	for (int i = v.size()-1; i > 0; i--)
+    		for (int j = 0; j < i; j++)
+        		if (v[j] > v[j+1])
+            		swap(v[j], v[j+1]);
 }
 
 template<typename T> int PQueue<T>::qsize()
-{  int size;
-   size=vec.size();
-  return size;   
+{  	int size;
+   	size=vec.size();
+  	return size;   
 }
 
 template<typename T> T PQueue<T>::front()
-{      T value;
+{       T value;
  	value= vec.front();
 	return value;
 }
@@ -71,11 +69,14 @@ template<typename T> void PQueue<T>::remove()
 
 int main()
 {
-   PQueue<double> q;
-   q.add(3.54);
-   q.add(4.76);
-   q.add(1.00);
+   PQueue<int> q;
+   srand (time(NULL));
+  for(int i=0;i<10;i++)
+  { 
+   q.add(rand());
+  }
    q.print();
+   cout<<endl;
    q.remove();
    q.print();
 }
