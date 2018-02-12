@@ -27,9 +27,9 @@ class PQueue
 	PQueue(vector<T> &v);
 	vector<T> vec;
 };
-
+// default contructor
 template <typename T> PQueue<T>::PQueue(){}
-
+// uses bubble sort to sort the queue
 template <typename T> PQueue<T>::PQueue(vector<T> &v)
 {
 	for (int i = v.size()-1; i > 0; i--)
@@ -37,31 +37,31 @@ template <typename T> PQueue<T>::PQueue(vector<T> &v)
         		if (v[j] > v[j+1])
             		swap(v[j], v[j+1]);
 }
-
+//return the size of the queue
 template<typename T> int PQueue<T>::qsize()
 {  	int size;
    	size=vec.size();
   	return size;   
 }
-
+//returns the value of the first element
 template<typename T> T PQueue<T>::front()
 {       T value;
  	value= vec.front();
 	return value;
 }
-
+// prints out the whole queue
 template<typename T> void PQueue<T>::print()
 {
   for (int i = 0; i < vec.size(); i++)
         cout<<vec[i]<<endl;
 }
-
+// pushes an element to the back and calls the copy contructor to sort
 template<typename T> void PQueue<T>::add(T x)
 {  
    vec.push_back(x);
    PQueue<T> srt(vec);
 }
-
+// remove fist element
 template<typename T> void PQueue<T>::remove()
 {
        	vec.erase(vec.begin());
