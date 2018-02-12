@@ -71,12 +71,20 @@ int main()
 {
    PQueue<int> q;
    srand (time(NULL));
-  for(int i=0;i<10;i++)
+  for(int i=0;i<5;i++)
   { 
    q.add(rand());
   }
+  cout<<"Numbers are added and sorted to the queue then printed"<<endl;
+   q.print();
+   cout<<endl;
+   cout<< "Add single random number to be added and sorted"<<endl;
+   q.add(rand());
    q.print();
    cout<<endl;
    q.remove();
+   cout<<"Remove the front of Queue: "<<endl;
    q.print();
+   cout<<"Size of queue is " << q.qsize()<<endl;
+   cout<<"Front of queue is "<<q.front()<<endl;
 }
