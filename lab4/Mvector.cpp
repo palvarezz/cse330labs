@@ -1,4 +1,5 @@
 #include <iostream>
+#include <assert.h>
 using namespace std;
 template <typename T>
 class Mvector
@@ -50,16 +51,12 @@ template<typename T> void Mvector<T>::pushback(T x)
 
 template<typename T> void Mvector<T>::popback()
 {
-         v[vsize]=0;
+         assert(vsize>0);
 	 vsize--;
 }
 
 template<typename T> void Mvector<T>::clear()
 {
-     for(int i=0;i<vsize;i++)
-     {
-	v[i]=0;
-     }
      vsize=0;
 }
 
@@ -69,15 +66,22 @@ template<typename T> void Mvector<T>::insert(int i, T x)
      {
 	reserve(vcap*2);
      }
+     for(int j=vsize;j>i;j--)
+     {
+	v[j]=v[j-1];
+     }
+     v[i]=x;
+     vsize++;
 }
 
 template<typename T>void Mvector<T>::erase(int i)
 {
-    for(int j=i;j<vsize;i++)
+
+    for(int j=i;j<vsize;j++)
     {
 	v[j]=v[j+1];
     }
-   
+   vsize--;
 }
 
 template<typename T> T Mvector<T>::operator[](unsigned int i)
@@ -94,7 +98,6 @@ template <typename T> void Mvector<T>::reserve(unsigned int n)
 {
      T* rv=new T[n];
      vcap=n;
-    // vsize=0;
      for(int i=0;i<vsize;i++)
      {
 	rv[i]=v[i];
@@ -112,7 +115,9 @@ int main()
 	v.pushback(8);
 	v.pushback(19);
 	v.pushback(20);
-	//v.clear();
+	v.popback();
+	v.insert(3,3);
+	v.erase(3);
 	for(int i=0;i<v.size();i++)
 	{
 	ind=v[i];
