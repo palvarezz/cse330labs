@@ -31,7 +31,7 @@ template<typename T> Mvector<T>::Mvector()
 }
 template<typename T> Mvector<T>::Mvector(unsigned int n)
 {
-
+	assert(n>=0);
 	T *newv=new T[n];
 	vcap=n;
 	vsize=0;
@@ -62,6 +62,7 @@ template<typename T> void Mvector<T>::clear()
 
 template<typename T> void Mvector<T>::insert(int i, T x)
 {
+	assert(i>=0 and i<=vsize);
      if(vsize==vcap)
      {
 	reserve(vcap*2);
@@ -76,7 +77,7 @@ template<typename T> void Mvector<T>::insert(int i, T x)
 
 template<typename T>void Mvector<T>::erase(int i)
 {
-
+    assert(i>=0 and i<=vsize);
     for(int j=i;j<vsize;j++)
     {
 	v[j]=v[j+1];
@@ -86,6 +87,7 @@ template<typename T>void Mvector<T>::erase(int i)
 
 template<typename T> T Mvector<T>::operator[](unsigned int i)
 {
+   assert(i<vsize and vsize >0);
    return v[i]; 
 }
 
@@ -98,11 +100,12 @@ template <typename T> void Mvector<T>::reserve(unsigned int n)
 {
      T* rv=new T[n];
      vcap=n;
+     assert(vcap>0);
      for(int i=0;i<vsize;i++)
      {
 	rv[i]=v[i];
      }
-     delete v;
+     delete []v;
      v=rv;
 }
 int main()
