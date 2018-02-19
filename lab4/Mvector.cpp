@@ -111,19 +111,59 @@ template <typename T> void Mvector<T>::reserve(unsigned int n)
 int main()
 {	int ind;
 	Mvector<int> v;
-	v.pushback(3);
-	v.pushback(2);
-	v.pushback(5);
-	v.pushback(7);
-	v.pushback(8);
-	v.pushback(19);
-	v.pushback(20);
+	for(int i=0;i<4;i++)
+	{
+	   v.pushback(rand());
+	}
+	cout<<"random numbers added to vector:"<<endl;
+	for(int i=0;i<v.size();i++)
+	{
+	cout<<v[i]<<endl;
+	}
+	cout<<"call popback:"<<endl;
 	v.popback();
-	v.insert(3,3);
+
+	for(int i=0;i<v.size();i++)
+	{
+	cout<<v[i]<<endl;
+	}
+	cout<<"insert element "<<endl;
+	v.insert(1,rand());
+	
+	for(int i=0;i<v.size();i++)
+	{
+	cout<<v[i]<<endl;
+	}
+	cout<<"pushback 2  element which calls the private function reserve()"<<endl;
+	v.pushback(rand());
+	v.pushback(rand());
+	for(int i=0;i<v.size();i++)
+	{
+	cout<<v[i]<<endl;
+	}
+	cout<<"erase from element 3"<<endl;
 	v.erase(3);
 	for(int i=0;i<v.size();i++)
 	{
-	ind=v[i];
-	cout<<ind<<endl;
+	cout<<v[i]<<endl;
 	}
+
+	cout<<"the size of vector is "<<v.size()<<endl;
+	cout<<"Clear the vector with clear():"<<endl;
+	v.clear();
+
+	for(int i=0;i<v.size();i++)
+	{
+	cout<<v[i]<<endl;
+	}
+	Mvector<int> cv(5);
+	cv.pushback(1234);
+	cout<<"call copy constructor:"<<endl;
+	for(int i=0;i<cv.size();i++)
+	{
+	cout<<cv[i]<<endl;
+	}
+	return 0;
+
+
 }
